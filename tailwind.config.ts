@@ -57,6 +57,31 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        operational: {
+          DEFAULT: "hsl(var(--operational))",
+          foreground: "hsl(var(--operational-foreground))",
+        },
+        maintenance: {
+          DEFAULT: "hsl(var(--maintenance))",
+          foreground: "hsl(var(--maintenance-foreground))",
+        },
+        critical: {
+          DEFAULT: "hsl(var(--critical))",
+          foreground: "hsl(var(--critical-foreground))",
+        },
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-operational': 'var(--gradient-operational)',
+        'gradient-surface': 'var(--gradient-surface)',
       },
       borderRadius: {
         lg: "var(--radius)",
