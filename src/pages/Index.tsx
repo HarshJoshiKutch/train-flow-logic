@@ -6,7 +6,7 @@ import { AlertPanel } from "@/components/alert-panel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, BarChart3 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 // Mock data for demonstration
@@ -214,7 +214,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-surface">
       <DashboardHeader
         totalTrains={trains.length}
         operationalTrains={operationalCount}
@@ -224,31 +224,38 @@ const Index = () => {
         onRefresh={handleRefresh}
       />
       
-      <div className="container mx-auto p-6 space-y-6">
+      <div className="container mx-auto p-8 space-y-8">
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="overview">Fleet Overview</TabsTrigger>
-            <TabsTrigger value="recommendations">AI Recommendations</TabsTrigger>
-            <TabsTrigger value="alerts">System Alerts</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-gradient-surface shadow-lg border-0 p-1 rounded-xl">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-glow font-medium transition-all duration-300">
+              <BarChart3 className="h-4 w-4 mr-2" />
+              Fleet Overview
+            </TabsTrigger>
+            <TabsTrigger value="recommendations" className="data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-glow font-medium transition-all duration-300">
+              AI Recommendations
+            </TabsTrigger>
+            <TabsTrigger value="alerts" className="data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-glow font-medium transition-all duration-300">
+              System Alerts
+            </TabsTrigger>
           </TabsList>
           
-          <TabsContent value="overview" className="space-y-6">
+          <TabsContent value="overview" className="space-y-8 animate-fade-in">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-4 top-3 h-5 w-5 text-muted-foreground" />
                 <Input
-                  placeholder="Search trains..."
+                  placeholder="Search trains by ID or number..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-12 h-12 text-lg border-2 focus:border-primary/50 bg-gradient-surface shadow-lg"
                 />
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-full sm:w-48">
-                  <Filter className="h-4 w-4 mr-2" />
+                <SelectTrigger className="w-full sm:w-56 h-12 border-2 bg-gradient-surface shadow-lg">
+                  <Filter className="h-5 w-5 mr-2" />
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-gradient-surface border-2">
                   <SelectItem value="all">All Status</SelectItem>
                   <SelectItem value="operational">Operational</SelectItem>
                   <SelectItem value="maintenance">Maintenance</SelectItem>
@@ -258,14 +265,16 @@ const Index = () => {
               </Select>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTrains.map((train) => (
-                <TrainStatusCard key={train.trainId} {...train} />
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              {filteredTrains.map((train, index) => (
+                <div key={train.trainId} style={{ animationDelay: `${index * 100}ms` }}>
+                  <TrainStatusCard {...train} />
+                </div>
               ))}
             </div>
           </TabsContent>
           
-          <TabsContent value="recommendations" className="space-y-6">
+          <TabsContent value="recommendations" className="space-y-8 animate-fade-in">
             <InductionRecommendations
               recommendations={recommendations}
               onApprove={handleApproveRecommendation}
@@ -273,7 +282,7 @@ const Index = () => {
             />
           </TabsContent>
           
-          <TabsContent value="alerts" className="space-y-6">
+          <TabsContent value="alerts" className="space-y-8 animate-fade-in">
             <AlertPanel
               alerts={alerts}
               onAcknowledge={handleAcknowledgeAlert}

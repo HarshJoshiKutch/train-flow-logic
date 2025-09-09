@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 214 32% 98%;
     --foreground: 213 31% 12%;
 
     --card: 0 0% 100%;
@@ -17,45 +17,59 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 213 31% 12%;
 
-    --primary: 214 84% 56%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 94%;
+    --secondary: 213 27% 94%;
     --secondary-foreground: 213 31% 20%;
 
-    --muted: 210 40% 96%;
+    --muted: 213 27% 94%;
     --muted-foreground: 213 19% 46%;
 
-    --accent: 214 84% 56%;
+    --accent: 221 83% 53%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 214 84% 56%;
+    --border: 214 32% 89%;
+    --input: 214 32% 89%;
+    --ring: 221 83% 53%;
 
-    --success: 142 76% 36%;
-    --success-foreground: 138 76% 97%;
+    --success: 142 71% 45%;
+    --success-foreground: 355 7% 97%;
     
     --warning: 38 92% 50%;
     --warning-foreground: 48 96% 9%;
     
-    --operational: 214 84% 56%;
+    --operational: 221 83% 53%;
     --operational-foreground: 210 40% 98%;
     
     --maintenance: 38 92% 50%;
     --maintenance-foreground: 48 96% 9%;
     
-    --critical: 0 84% 60%;
+    --critical: 0 72% 51%;
     --critical-foreground: 210 40% 98%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%), hsl(221 83% 53%));
-    --gradient-operational: linear-gradient(135deg, hsl(214 84% 56%), hsl(196 75% 55%));
-    --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(230 75% 56%));
+    --gradient-operational: linear-gradient(135deg, hsl(221 83% 53%), hsl(196 75% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(160 65% 48%));
+    --gradient-warning: linear-gradient(135deg, hsl(38 92% 50%), hsl(45 93% 47%));
+    --gradient-critical: linear-gradient(135deg, hsl(0 72% 51%), hsl(348 83% 47%));
+    --gradient-surface: linear-gradient(135deg, hsl(0 0% 100%), hsl(213 27% 97%));
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(230 75% 56%) 50%, hsl(240 69% 59%) 100%);
 
-    --radius: 0.5rem;
+    --shadow-sm: 0 1px 2px 0 hsl(213 31% 12% / 0.05);
+    --shadow: 0 1px 3px 0 hsl(213 31% 12% / 0.1), 0 1px 2px -1px hsl(213 31% 12% / 0.1);
+    --shadow-md: 0 4px 6px -1px hsl(213 31% 12% / 0.1), 0 2px 4px -2px hsl(213 31% 12% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(213 31% 12% / 0.1), 0 4px 6px -4px hsl(213 31% 12% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(213 31% 12% / 0.1), 0 8px 10px -6px hsl(213 31% 12% / 0.1);
+    --shadow-glow: 0 0 20px hsl(221 83% 53% / 0.3);
+    --shadow-glow-success: 0 0 20px hsl(142 71% 45% / 0.3);
+    --shadow-glow-warning: 0 0 20px hsl(38 92% 50% / 0.3);
+    --shadow-glow-critical: 0 0 20px hsl(0 72% 51% / 0.3);
+
+    --radius: 8px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -119,6 +133,44 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-gradient-surface {
+    background: var(--gradient-surface);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-glow-success {
+    box-shadow: var(--shadow-glow-success);
+  }
+  
+  .shadow-glow-warning {
+    box-shadow: var(--shadow-glow-warning);
+  }
+  
+  .shadow-glow-critical {
+    box-shadow: var(--shadow-glow-critical);
+  }
+  
+  .glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: hsl(0 0% 100% / 0.75);
+    border: 1px solid hsl(0 0% 100% / 0.125);
+  }
+  
+  .glass-dark {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: hsl(213 31% 12% / 0.75);
+    border: 1px solid hsl(213 31% 12% / 0.125);
   }
 }
