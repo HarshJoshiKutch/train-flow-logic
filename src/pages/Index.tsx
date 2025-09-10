@@ -204,6 +204,13 @@ const Index = () => {
     });
   };
 
+  const handleSettings = () => {
+    toast({
+      title: "Settings",
+      description: "Opening system configuration panel",
+    });
+  };
+
   useEffect(() => {
     // Simulate real-time updates
     const interval = setInterval(() => {
@@ -222,6 +229,7 @@ const Index = () => {
         criticalAlerts={criticalAlertCount}
         lastSync={lastSync}
         onRefresh={handleRefresh}
+        onSettings={handleSettings}
       />
       
       <div className="container mx-auto p-8 space-y-8">

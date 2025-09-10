@@ -9,6 +9,7 @@ interface DashboardHeaderProps {
   criticalAlerts: number;
   lastSync: string;
   onRefresh: () => void;
+  onSettings?: () => void;
 }
 
 export function DashboardHeader({
@@ -17,7 +18,8 @@ export function DashboardHeader({
   maintenanceTrains,
   criticalAlerts,
   lastSync,
-  onRefresh
+  onRefresh,
+  onSettings
 }: DashboardHeaderProps) {
   return (
     <div className="relative bg-gradient-hero overflow-hidden">
@@ -55,6 +57,7 @@ export function DashboardHeader({
             <Button 
               variant="secondary" 
               size="lg"
+              onClick={onSettings}
               className="glass backdrop-blur-md hover:shadow-glow transition-all duration-300"
             >
               <Settings className="h-4 w-4 mr-2" />
